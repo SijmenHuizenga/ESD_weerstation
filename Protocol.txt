@@ -1,0 +1,21 @@
+================================
+==Wether Cominucation Protocol==
+================================
+header:
+| - byte 0: lenght of message in byes including footer.
+| - byte 1: the sum checksum
+| - byte 2: the multiplyer checksum
+| - byte 3: Message id. Every message has a new number.
+            The number is added 1 every message.
+            If the number is 255, than the nex message has number 0. 
+footer:
+| - last byte: sum of the header (byte 0, 1, 2, 3)
+
+
+Data message. From arduino to pc:
+byte 4:  1  (to tell it is a data message)
+byte 5:  potentiometer value between 0 and 99
+byte 6:  light sensor value between 0 and 99
+byte 7:  termometer value in degrees + 100  (to cover negative values)
+byte 8:  the values of the 4 buttons: bit 1 is button 1, bit 2 is button 2 etc.
+         So 1010 means: button 1 = down, 2 = up, 3 = down, 4 = up.  
